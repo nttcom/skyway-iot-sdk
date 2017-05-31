@@ -31,9 +31,8 @@ client.on('meta', meta => {
 })
 
 client.on("stream", (stream, uuid) => {
-    display(uuid, stream)
-  })
-}
+  display(uuid, stream)
+})
 ```
 
 **device side**
