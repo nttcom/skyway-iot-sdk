@@ -21,14 +21,126 @@ Most easy way to setup SkyWay IoT SDK will be using [this raspberry PI image](@@
 
 ## Manual install
 
-Below, we will explain how to install them manually on Debian based environment.
+We will explain how to install SkyWay IoT SDK framework manually on Debian based environment. (We assume that latest version of node v6 is already installed)
 
 ### Janus Gateway + SkyWay Plugin
 
+* Install dependency libraries
+
+```bash
+$ sudo aptitude install libmicrohttpd-dev libjansson-dev libnice-dev \
+        libssl-dev libsrtp-dev libsofia-sip-ua-dev libglib2.0-dev \
+        libopus-dev libogg-dev libcurl4-openssl-dev pkg-config gengetopt \
+        libtool automake
+```
+
+* Install libsctp 
+
+```bash
+$ git clone https://github.com/sctplab/usrsctp
+$ cd usrsctp
+$ ./bootstrap
+$ ./configure --prefix=/usr; make; sudo make install
+```
+
+* Install Janus-gateway & skywayiot-plugin
+
+```bash
+$ cd ~/janus-install
+$ git clone --branch v0.2.1 https://github.com/meetecho/janus-gateway.git
+$ git clone --branch https://github.com/eastandwest/janus-skywayiot-plugin.git
+$ cd janus-skywayiot-plugin
+$ bash addplugin.sh
+
+$ cd ../janus-gateway
+$ sh autogen.sh
+$ ./configure --prefix=/opt/janus --disable-mqtt --disable-rabbitmq --disable-docs --disable-websockets
+$ make
+$ sudo make install
+$ sudo make configs
+```
+
+* update configs
+
+``/opt/janus/etc/janus/janus.plugin.streaming.cfg``
+
+```
+;comment out [gst-rpwc], then append example streaming setting shown below
+[skywayiotsdk-example]
+type = rtp
+id = 1
+description = SkyWay IoT SDK H264 example streaming
+audio = yes
+video = yes
+audioport = 5002
+audiopt = 111
+audiortpmap = opus/48000/2
+videoport = 5004
+videopt = 96
+videortpmap = H264/90000
+videofmtp = profile-level-id=42e028\;packetization-mode=1
+```
+
+``/opt/janus/etc/janus/janus.transport.http.cfg``
+
+```
+https=yes
+secure_port=8089
+```
+
+``/opt/janus/etc/janus/janus.cfg``
+
+```
+turn_rest_api = http://iot-turn.skyway.io/api
+turn_rest_api_key = demonstrationkey
+turn_rest_api_method
+```
+
+Please be sure that you can use our dedicated turn server for demonstration needs. Since current SkyWay TURN feature does not have compatibility with IoT SDK, for developers demonstration convenience, we setupped shared turn server. If you want to use SkyWay IoT SDK for your own purpose, please setup and use your own TURN server, [coturn](https://github.com/coturn/coturn) will be one option to setup your server. Please be sure that we will not guarantee our demonstration TURN server.
+
 ### SSG
+
+* install SSG
+
+```bash
+$ git clone https://github.com/eastandwest/signalinggateway.git
+$ cd signalinggateway
+$ npm install
+```
+
+* update configs
+
+``signalinggateway/conf/skyway.yaml``
+
+```bash
+## set API key and origin according to the setting you configured in https://skyway.io/ds.
+apikey: SET_YOUR_OWN_APIKEY
+origin: SET_YOUR_OWN_ORIGIN
+```
+
+For obtaining apikey and setting domain of origin, please login or sign up at [Our SkyWay dashboard](https://skyway.io/ds/)
 
 ### Streaming Process (gstreamer)
 
-### Sample 3rd party app
+* install gstreamer
 
-### Sample client
+```bash
+$ sudo apt-get update
+$ sudo apt-get install libgstreamer1.0-0 libgstreamer1.0-dev gstreamer1.0-nice gstreamer1.0-plugins-base \
+      gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-doc gstreamer1.0-tools
+```
+
+### SiRu-device (utility library to build 3rd party app)
+
+* install SiRu-device
+
+```bash
+$ git clone git@ghe.nttcloud.net:SkyWay/SiRu-device.git
+$ cd SiRu-device
+$ npm install
+```
+
+## Next Step
+
+Time to test the sample app to check SkyWay IoT SDK completely installed.
+see [Getting Started - How to use sample app](./how_to_use_sample_app.md)
