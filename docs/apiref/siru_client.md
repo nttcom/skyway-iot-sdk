@@ -110,7 +110,7 @@ client.on('meta', meta => { ... })
 fired when meta data is received from each device in the room. 
 
 * meta - object
-  - we will not completely specified for the format of meta data, but ``meta.uuid`` must be specified. You can see example meta data in ``signalinggateway/conf/profile.yaml``
+  - we will not completely specified for the format of meta data, but ``meta.uuid`` must be specified. You can see example meta data in [profile.yaml](https://github.com/nttcom/skyway-signaling-gateway/tree/master/conf/profile.yaml)
 
 ### message
 

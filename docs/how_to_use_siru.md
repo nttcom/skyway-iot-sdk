@@ -13,12 +13,12 @@ Below, we will explain you how to use SiRu.
 
 SiRu has two libraries, one is for client app and another is for device.
 
-### SiRu-client
+### For client : SiRu-client
 
 SiRu-client is SiRu library for client app. If you like ``<script>`` way,
 
 ```html
-<script src="https://@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/siru-client.hoge.js"></script>
+<script src="https://raw.githubusercontent.com/nttcom/skyway-siru-client/master/dist/SiRuClient.min.js"></script>
 ```
 
 You don't need include skyway library, since it is involved with in siru-client.
@@ -37,7 +37,7 @@ import SiRuClient from 'siru-client'
 
 in your code.
 
-### SiRu-device
+### For device : SiRu-device
 
 SiRu-device is library for node.js. So use npm to install this module.
 
@@ -68,7 +68,7 @@ apikey: 01234567-0123-0123-0123456789ab
 origin: http://localhost
 ```
 
-### Client side
+### for client
 
 ```js
 const client = new SiRuClient('testroom', {key: '01234567-0123-0123-0123456789ab'})
@@ -79,7 +79,7 @@ client.on('connect', () => {
 })
 ```
 
-### Device side
+### for device
 
 ```js
 const device = new SiRuDevice('testroom')
@@ -95,7 +95,7 @@ When device join the room, event ``meta`` will be fired. (meta data is configure
 
 Here, meta data has ``uuid`` property which is automatically allocated while 1st execution of SSG. By indicating ``uuid``, you can request media streaming from device.
 
-### Client side
+### for client
 
 ```js
 client.on('meta', meta => {
@@ -117,7 +117,7 @@ client.on('stream', (stream, uuid) => {
 })
 ```
 
-### Device side
+### for device
 
 Since media streaming is handled by SSG in itself. We don't need any coding in device side.
 
@@ -125,7 +125,7 @@ Since media streaming is handled by SSG in itself. We don't need any coding in d
 
 SiRu supports pub/sub messaging inside room. Here, we will show you how to handle publised data from device on client. In this example, device will publish timestamp every 1 seconds with topic of ``timestamp``.
 
-### Client side
+### for client
 
 ```js
 client.on('connect', () => {
@@ -140,7 +140,7 @@ client.on('connect', () => {
 })
 ```
 
-### Device side
+### for device
 
 ```js
 device.on('connect', () => {
@@ -155,7 +155,7 @@ device.on('connect', () => {
 
 SiRu supports REST interface similar to ``fetch()`` for client side using target ``uuid`` and express way handling. With this interface, client can easily get data from device and operate it. Here, this example, we will show you how to ``GET /echo`` in this framework.
 
-### Client side
+### for client
 
 ```js
 client.on('meta', () => {
@@ -170,7 +170,7 @@ client.on('meta', () => {
 })
 ```
 
-### Device side
+### for device
 
 ```js
 device.get('/echo/:message', (req, res) => {
@@ -182,7 +182,7 @@ device.get('/echo/:message', (req, res) => {
 
 Here, we will show you full sample code for this tutorial.
 
-### Client side
+### client side code
 
 ```html
 <!doctype html>
@@ -248,7 +248,7 @@ client.on('stream', (stream, uuid) => {
 </html>
 ```
 
-### Device side
+### Device side code
 
 ```js
 import SiRuDevice from 'siru-device'

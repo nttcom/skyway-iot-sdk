@@ -2,16 +2,16 @@
 
 SkyWay IoT SDK is kind of framework rather than saying libraries. This framework consists of several building blocks as shown below.
 
-- Janus Gateway + SkyWay Plugin ## todo - add repository link
+- [Janus Gateway + SkyWay Plugin](https://github.com/nttcom/janus-skywayiot-plugin)
   - WebRTC gateway feature within the framework. For example, Janus Gateway establish WebRTC P2P connection between device and client, then relays pure RTP base media streaming data ( provided by streaming process explained below ) into WebRTC media streaming protocol (ICE + SRTP). By using SkyWay Plugin, developer can control Janus Gateway feature from client api outside of Janus Signaling Protocol. Also, it gives a way to connect 3rd party app and client app leveraging DataChannel relayed by Janus Gateway.
-- SkyWay Signaling Gateway (SSG) ## todo - add repository link
+- [SkyWay Signaling Gateway (SSG)](https://github.com/nttcom/skyway-signaling-gateway)
   - Signaling Protocol gateway between Janus REST API and SkyWay Signaling Server. Since it transform SkyWay's signaling protocol such as offer, answer and ice candidate into Janus REST API inside private network, you can easily develop global accessible WebRTC-IoT app. Because of this building block, you can get not only global accesibility but also a way for developping to control Janus Gateway by (new SkyWay API)[http://nttcom.github.io/skyway/en/alpha-release.html]. Also, it relays DataChannel data between Janus Gateway and 3rd party app.
 - Streaming Process
   - Streaming Process is used for generating stream data. It generates rtp stream that will be received by Janus Gateway. This rtp data will be relayed to client app by WebRTC P2P protocol. Typically, gstreamer is used for this purpose. But in case of generating stream from file, this process is not needed. Just configuring file path to Janus Gateway is enought for it.
 - Device side 3rd party app
-  - Arbitrary application which will communicate with client app via DataChannel. This app will be running on IoT device and communicate with SSG via TCP socket. In most cases, making use of [SiRu Device](@@@) module would be easy to implement 3rd party app. For example, monitoring metrics such as temperature, humidity, light quantity would be a typical use-case.
+  - Arbitrary application which will communicate with client app via DataChannel. This app will be running on IoT device and communicate with SSG via TCP socket. In most cases, making use of [SiRu Device](https://github.com/nttcom/skyway-siru-device) module would be easy to implement 3rd party app. For example, monitoring metrics such as temperature, humidity, light quantity would be a typical use-case.
 - Client app
-  - Arbitrary application which would be used on client side. For instance, monitoring camera streaming, realtime metrics data and operating IoT device would be a typical use-case.
+  - Arbitrary application which would be used on client side. For instance, monitoring camera streaming, realtime metrics data and operating IoT device would be a typical use-case. In most cases, makin use of [SiRu Client](https://github.com/nttcom/skyway-siru-client) module would be easy to implement your client side application.
 
 So you need to install above building blocks on linux based IoT devices, such as raspberry PI.
 
@@ -34,7 +34,7 @@ $ sudo aptitude install libmicrohttpd-dev libjansson-dev libnice-dev \
         libtool automake
 ```
 
-* Install libsctp 
+* Install libsctp
 
 ```bash
 $ git clone https://github.com/sctplab/usrsctp
@@ -65,7 +65,7 @@ $ sudo make configs
 ``/opt/janus/etc/janus/janus.plugin.streaming.cfg``
 
 ```
-;comment out [gst-rpwc], then append example streaming setting shown below
+;comment out lines for [gst-rpwc], then append example streaming setting shown below
 [skywayiotsdk-example]
 type = rtp
 id = 1
@@ -93,17 +93,17 @@ secure_port=8089
 ```
 turn_rest_api = http://iot-turn.skyway.io/api
 turn_rest_api_key = demonstrationkey
-turn_rest_api_method
+turn_rest_api_method = GET
 ```
 
-Please be sure that you can use our dedicated turn server for demonstration needs. Since current SkyWay TURN feature does not have compatibility with IoT SDK, for developers demonstration convenience, we setupped shared turn server. If you want to use SkyWay IoT SDK for your own purpose, please setup and use your own TURN server, [coturn](https://github.com/coturn/coturn) will be one option to setup your server. Please be sure that we will not guarantee our demonstration TURN server.
+Please be sure that you can use our dedicated turn server for demonstration needs. Since current SkyWay TURN feature does not have compatibility with IoT SDK, for developers demonstration convenience, we setupped shared turn server. If you want to use SkyWay IoT SDK for your own purpose, please setup and use your own TURN server. [Coturn](https://github.com/coturn/coturn) will be one option to setup your server. Please be sure that we will not guarantee our demonstration TURN server.
 
 ### SSG
 
 * install SSG
 
 ```bash
-$ git clone https://github.com/eastandwest/signalinggateway.git
+$ git clone https://github.com/nttcom/skyway-signaling-gateway.git
 $ cd signalinggateway
 $ npm install
 ```
@@ -130,12 +130,12 @@ $ sudo apt-get install libgstreamer1.0-0 libgstreamer1.0-dev gstreamer1.0-nice g
       gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-doc gstreamer1.0-tools
 ```
 
-### SiRu-device (utility library to build 3rd party app)
+### SiRu-device (utility library for building 3rd party app)
 
 * install SiRu-device
 
 ```bash
-$ git clone git@ghe.nttcloud.net:SkyWay/SiRu-device.git
+$ git clone https://github.com/nttcom/skyway-siru-device.git
 $ cd SiRu-device
 $ npm install
 ```

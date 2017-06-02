@@ -29,7 +29,7 @@ const peer = new Peer({key: MY_APIKEY})
 peer.on('open', id => {
   const mypeerid = id
   const conn = peer.connect(PEERID_OF_SSG, {serialization: "none", reliable: true});
-  // you can check the peerid of SSG in log message. Or, you can specify peerid of SSG. For more detail please check @@@@@@@@@@@@@@@@@@@@@@@
+  // you can check the peerid of SSG in log message. Or, you can specify peerid of SSG. For more detail please check https://github.com/nttcom/skyway-signaling-gateway
 
   conn.on('open', () => {
     // send media stream request

@@ -12,7 +12,7 @@ SkyWay IoT SDK is headless WebRTC app developement tool for linux box. Work toge
 
 Coding with SkyWay IoT SDK is super easy, especially you use SiRu (SkyWay IoT Room Utility) framework. For instance, the snipet to get media streaming and metric data from IoT device is shown below.
 
-**client side**
+**for client**
 
 ```javascript
 const client = new SiRuClient('myroom', {key: 'YOUR_API_KEY'})
@@ -35,12 +35,12 @@ client.on("stream", (stream, uuid) => {
 })
 ```
 
-**device side**
+**for device**
 
 ```javascript
-const siru = new SiRuDevice('myroom')
+const device = new SiRuDevice('myroom')
 
-siru.get('/metrics/:target', (req, res) => {
+device.get('/metrics/:target', (req, res) => {
   const target = req.params.target
   const metric = getMetric(target)
 
