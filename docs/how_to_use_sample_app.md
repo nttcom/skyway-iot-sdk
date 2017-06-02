@@ -73,4 +73,4 @@ Then, you may see that video view automatically changed from test video to real 
 ## Next Step
 
 Now your SkyWay IoT SDK environment is properly working. Next step is to learn how to build your own app with SDK.
-* [Getting Started - SkyWay IoT Room Utility(SiRu)](./docs/how_to_use_siru.md)
+* [Getting Started - SkyWay IoT Room Utility(SiRu)](./how_to_use_siru.md)
