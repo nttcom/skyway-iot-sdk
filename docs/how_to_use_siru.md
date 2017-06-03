@@ -188,7 +188,7 @@ Here, we will show you full sample code for this tutorial.
 <!doctype html>
 <html>
   <head>
-    <script src="@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"></script>
+    <script src="https://raw.githubusercontent.com/nttcom/skyway-siru-client/master/dist/SiRuClient.min.js"></script>
   </head>
   <body>
     <p>
