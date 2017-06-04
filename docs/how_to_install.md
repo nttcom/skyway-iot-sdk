@@ -2,6 +2,8 @@
 
 SkyWay IoT SDK is kind of framework rather than saying libraries. This framework consists of several building blocks as shown below.
 
+![iot sdk over view](https://s3-us-west-1.amazonaws.com/skyway-iot-sdk/iot-sdk-overview.png)
+
 - [Janus Gateway + SkyWay Plugin](https://github.com/nttcom/janus-skywayiot-plugin)
   - WebRTC gateway feature within the framework. For example, Janus Gateway establish WebRTC P2P connection between device and client, then relays pure RTP base media streaming data ( provided by streaming process explained below ) into WebRTC media streaming protocol (ICE + SRTP). By using SkyWay Plugin, developer can control Janus Gateway feature from client api outside of Janus Signaling Protocol. Also, it gives a way to connect 3rd party app and client app leveraging DataChannel relayed by Janus Gateway.
 - [SkyWay Signaling Gateway (SSG)](https://github.com/nttcom/skyway-signaling-gateway)
@@ -15,13 +17,9 @@ SkyWay IoT SDK is kind of framework rather than saying libraries. This framework
 
 So you need to install above building blocks on linux based IoT devices, such as raspberry PI.
 
-## Image install
+## Install
 
-Most easy way to setup SkyWay IoT SDK will be using [this raspberry PI image](@@@). The instruction to install image is almost same as explained in [raspberry PI page](https://www.raspberrypi.org/documentation/installation/installing-images/). So, please check it for more detail.
-
-## Manual install
-
-We will explain how to install SkyWay IoT SDK framework manually on Debian based environment. (We assume that latest version of node v6 is already installed)
+We will explain how to install SkyWay IoT SDK framework manually on Debian based environment. (We assume that node.js v6 is already installed)
 
 ### Janus Gateway + SkyWay Plugin
 

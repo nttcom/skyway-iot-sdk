@@ -1,6 +1,8 @@
 # SkyWay IoT SDK
 
-Project repository for [SkyWay](https://skyway.io) IoT SDK (Open beta feature, currently).
+Project repository for [SkyWay](https://skyway.io) IoT SDK (At this moment, open beta feature).
+
+![iot sdk over view](https://s3-us-west-1.amazonaws.com/skyway-iot-sdk/iot-sdk-overview.png)
 
 ## What's SkyWay IoT SDK?
 
