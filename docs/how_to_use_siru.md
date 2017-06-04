@@ -184,11 +184,11 @@ Here, we will show you full sample code for this tutorial.
 
 ### client side code
 
-* [sample/sample-client.html](../sample-client.html)
+* [sample/sample-client.html](../sample/sample-client.html)
 
 ### Device side code
 
-* [sample/sample-device.js](../sample-device.js)
+* [sample/sample-device.js](../sample/sample-device.js)
 
 ## Next Step
 
