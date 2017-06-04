@@ -9,45 +9,43 @@ Here, we assume that SSG and SiRu-device is installed in your home directory.
 * janus gateway
 
 ```bash
-$ /opt/janus/bin/janus
+/opt/janus/bin/janus
 ```
 
 * SSG
 
 ```bash
-$ cd ~/signalinggateway
-$ node app
+cd ~/skyway-signaling-gateway
+node app
 ```
 
 * sample H.264 Streaming Process
 
 ```bash
-$ cd ~/signalinggateway
-$ cd skywayiot-sdk-test
-$ bash h264_streaming_testsrc.sh
+cd ~/skyway-signaling-gateway
+cd skywayiot-sdk-test
+bash h264_streaming_testsrc.sh
 ```
 
 * sample 3rd party app
 
 ```bash
-$ cd ~/SiRu-device
+$ cd ~/skyway-siru-device
 $ cd examples
 $ node metrics
 ```
 
 ## Access to sample web app
 
+Before trying to access sample web app, you need to set ``nttcom.github.io`` in your SkyWay API Key settings.
+
 To check installation is completely finished and your environment working properly, you can use our sample web site.
 
-https://@@@@@@@@@@@@/
+https://nttcom.github.io/skyway-siru-sample/dist/
 
-1st time, you would see the blank form. Please input your APIKEY which is same as configured in ``signalinggateway/conf/skyway.yaml`` and ROOMNAME as ``testroom``.
+1st time, you would see the blank form. Please input your APIKEY which is same as configured in ``skyway-signaling-gateway/conf/skyway.yaml`` and ROOMNAME as ``testroom``.
 
-Then you would see the test video stream as shwon below.
-
-``todo - insert screen shot``
-
-Also, you would see realtime and historical metrics graph below streaming.
+Then you would see the test video stream and realtime metrics as shwon below.
 
 ``todo - insert screen shot``
 
@@ -57,18 +55,18 @@ Above setting, you could check the test video and audio streaming which is gener
 
 If you have USB camera and mic inside, plug it to your IoT device.
 
-``todo - insert screen shot``
+![sample app screenshot with test src](https://s3-us-west-1.amazonaws.com/skyway-iot-sdk/iot_sample_app_bar.png)
 
 Then stop current Streaming Process wth Ctrl+C then execute other process which is for usb camera.
 
 ```bash
-## ~/signalinggateway/skywayiot-sdk-test
+## ~/skyway-signaling-gateway/skywayiot-sdk-test
 $ bash h264_streaming_usbcam.sh
 ```
 
 Then, you may see that video view automatically changed from test video to real camera.
 
-``todo - insert screen shot``
+![sample app screenshot with usb cam](https://s3-us-west-1.amazonaws.com/skyway-iot-sdk/iot_sample_app_me.png)
 
 ## Next Step
 

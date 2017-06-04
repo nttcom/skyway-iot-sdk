@@ -18,21 +18,21 @@ SiRu has two libraries, one is for client app and another is for device.
 SiRu-client is SiRu library for client app. If you like ``<script>`` way,
 
 ```html
-<script src="https://raw.githubusercontent.com/nttcom/skyway-siru-client/master/dist/SiRuClient.min.js"></script>
+<script src="https://s3-us-west-1.amazonaws.com/skyway-iot-sdk/dist/SiRuClient.js"></script>
 ```
 
-You don't need include skyway library, since it is involved with in siru-client.
+You don't need including skyway library, since it is already involved in siru-client.
 
-Or you love to coding with webpack etc. 
+Or, if you love to code with webpack etc. 
 
 ```bash
-$ npm install siru-client
+$ npm install skyway-siru-client
 ```
 
 then,
 
 ```js
-import SiRuClient from 'siru-client'
+import SiRuClient from 'skyway-siru-client'
 ```
 
 in your code.
@@ -42,13 +42,13 @@ in your code.
 SiRu-device is library for node.js. So use npm to install this module.
 
 ```bash
-$ npm install siru-device
+$ npm install skyway-siru-device
 ```
 
 then,
 
 ```js
-import SiRuDevice from 'siru-device'
+const SiRuDevice = require('skyway-siru-device')
 ```
 
 Please be sure that required processes (Janus Gateway, SSG and streaming process) is already running on IoT device. Please check [install manual](./how_to_install.md) for more detail.
@@ -60,7 +60,7 @@ Joining a room is super easy, just calling constructor and that's it. Here, we a
 * Name of room : ``testroom``
 * APIKEY: ``01234567-0123-0123-0123456789ab``
 
-Name of room is arbitrary string, so that in your case uses whatever string you want. However, APIKEY is obtained from our SkyWay DashBoard site. If you don't have it or want to use dedicated key, please access https://skyway.io/ds/. In test cases, set ``localhost`` in your API Key setting will work fine in most cases. Also, you need to care that apikey and origin setting in ``signalinggateway/conf/skyway.yaml`` is configured with same value like below.
+Name of room is arbitrary string, so that in your case uses whatever string you want. However, APIKEY is obtained from our SkyWay DashBoard site. If you don't have it or want to use dedicated key, please access https://skyway.io/ds/. In test cases, set ``localhost`` in your API Key setting will work fine in most cases. Also, you need to care that apikey and origin setting in ``skyway-signaling-gateway/conf/skyway.yaml`` is configured with same value like below.
 
 ```yaml
 secure: true
@@ -184,89 +184,11 @@ Here, we will show you full sample code for this tutorial.
 
 ### client side code
 
-```html
-<!doctype html>
-<html>
-  <head>
-    <script src="https://raw.githubusercontent.com/nttcom/skyway-siru-client/master/dist/SiRuClient.min.js"></script>
-  </head>
-  <body>
-    <p>
-      <video></video>
-    </p>
-    <p>
-      <button>request echo</button>
-    </p>
-  </body>
-  <script>
-// join `testroom`. key is obtained from https://skyway.io/ds
-const client = new SiRuClient('testroom', {key: '01234567-0123-0123-0123456789ab'})
-
-// When joining the room completed, `connect` event will be fired.
-client.on('connect', () => {
-  //////////////////////////////////////////////////////////////////
-  // below is sample snipet to handle pub/sub messaging in SiRu
-
-  // subscribe topic
-  client.subscribe('timestamp')
-
-  // when published message received, ``message`` event will be fired.
-  client.on('message', (topic, mesg) => {
-    console.log(`${topic}: ${mesg}`)
-    // #=> 'timestamp: 1496358525304'
-  })
-})
-
-// when meta data from each device is received, `meta` event will be fired.
-client.on('meta', meta => {
-  const uuid = meta.uuid  // obtain device uuid
-
-  // request media stream to device which is identified by uuid
-  client.requestStreaming(uuid)
-
-  //////////////////////////////////////////////////////////////////
-  // below is sample snipet to handle REST interface
-  const btn = document.querySelector('button')
-
-  btn.addEventListener('click', ev => {
-    client.fetch(uuid+'/echo/helloWorld')
-      .then(res => res.text())
-      .then(text => console.log(`echo message: ${text}`))
-  })
-})
-
-// when media stream arrived, `stream` event will be fired. Each device is identified by uuid
-client.on('stream', (stream, uuid) => {
-  const video = document.querySelector('video')
-  video.srcObject = stream
-
-  video.onloadedmetadata = (ev) => {
-    video.play()
-  }
-})
-  </script>
-</html>
-```
+* [sample/sample-client.html](../sample-client.html)
 
 ### Device side code
 
-```js
-import SiRuDevice from 'siru-device'
-
-const device = new SiRuDevice('testroom')
-
-device.on('connect', () => {
-  // publish timestamp data every 1 seconds.
-  setInterval(ev => {
-    device.publish('timestamp', Date.now())
-  }, 1000)
-})
-
-// handle GET /echo request from client
-device.get('/echo/:message', (req, res) => {
-  res.send(req.params.message)
-}
-```
+* [sample/sample-device.js](../sample-device.js)
 
 ## Next Step
 
