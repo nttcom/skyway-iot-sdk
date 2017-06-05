@@ -192,3 +192,6 @@ res.send(data)
 
 * data - string|number|object
   - arbitrary data
+  
+---
+Copyright. NTT Communications All Rights Reserved.
