@@ -199,3 +199,6 @@ More detail about our API, please check below
 * [API reference - SiRu Client](./apiref/siru_client.md)
 * [API reference - SiRu Device](./apiref/siru_device.md)
 * [API reference - Pure API](./apiref/pure_api.md)
+
+---
+Copyright. NTT Communications All Rights Reserved.
