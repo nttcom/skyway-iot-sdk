@@ -4,8 +4,8 @@ For building WebRTC IoT app, we recommend you to use **SkyWay IoT Room Utility (
 
 * have room base connectivity with clients and devices inside room. You don't care about each peerid.
 * get Media Streaming from IoT device super easy way. This makes easy to build app for monitoring camera, for instance.
-* have pub/sub messaging inside room. This is convenient to send metrics data from device to monitor client.
-* have REST api from client to device. This convenient is convenient for operating device by requesting with some command data.
+* have pub/sub messaging inside room. This is convenient to send metrics data from device to monitoring client.
+* have REST api from client to device. This is convenient for operating device by requesting with some command data.
 
 Below, we will explain you how to use SiRu.
 
