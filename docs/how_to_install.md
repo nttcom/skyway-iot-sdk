@@ -152,3 +152,6 @@ npm install
 
 Time to test the sample app to check SkyWay IoT SDK completely installed.
 see [Getting Started - How to use sample app](./how_to_use_sample_app.md)
+
+---
+Copyright. NTT Communications All Rights Reserved.
