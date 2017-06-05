@@ -52,6 +52,17 @@ device.get('/metrics/:target', (req, res) => {
 
 Please note that there is no code to handle media streaming in the device side. For media streaming, some configuration and running media streaming process, such as gstreamer, are needed at IoT device side but no coding is required.
 
+## Platforms
+
+We tested these platforms at this moment.
+
+* device
+  - Ubuntu 16.04
+  - Raspbian Jessie
+* client
+  - Chrome (recommended)
+  - Firefox
+  
 ## Dive In!
 
 Please check out

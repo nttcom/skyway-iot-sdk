@@ -178,6 +178,8 @@ device.get('/echo/:message', (req, res) => {
 }
 ```
 
+We notice you that do not request large data with ``fetch()`` at this moment. We recommend you under 1K bytes of data. At this moment, SiRu-device chunked large data internally, however when number of chunk get larger, it get unstable (data loss tend to happen internally).
+
 ## Full sample code
 
 Here, we will show you full sample code for this tutorial.

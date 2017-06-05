@@ -17,6 +17,8 @@ const client = new SiRuClient(roomName, options)
 
 Send REST API request to device.
 
+We notice you that do not request large data with ``fetch()`` at this moment. We recommend you under 1K bytes of data. At this moment, SiRu-device chunked large data internally, however when number of chunk get larger, it get unstable (data loss tend to happen internally).
+
 ```js
 client.fetch(path_with_uuid, options)
   .then(res => { ... })
