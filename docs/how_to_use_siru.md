@@ -155,7 +155,7 @@ device.on('connect', () => {
 
 SiRu supports REST interface similar to ``fetch()`` for client side and express way to handle incoming request at device side. 
 
-As usual, to fetch data from server, you need to call server FQDN to indicate target server. However, in SkyWay IoT SDK model, we do not need to expose any information for device such as public FQDN. Since connection will be dinamically established on the fly basis in WebRTC protocol, we don't need to have permanent global connectivity for the device. Instance of public FQDN, we use ``uuid`` for distinguishing each devices. We don't need any firewall setting in front of NAT box! This is so powerful!! Without any relay server and complicated firewall setting, you can access your device wherever you want!!
+As usual, to fetch data from server, you need to call server FQDN to indicate target server. However, in SkyWay IoT SDK model, we do not need to expose any information for device such as public FQDN. Since connection will be dynamically established on the fly basis in WebRTC protocol, we don't need to have permanent global connectivity for the device. Instance of public FQDN, we use ``uuid`` for distinguishing each devices. We don't need any firewall setting in front of NAT box! This is so powerful!! Without any relay server and complicated firewall setting, you can access your device wherever you want!!
 
 With this interface, client can easily get data from device and operate it. Here, in this example, we will show you how to ``GET /echo`` in this framework.
 
