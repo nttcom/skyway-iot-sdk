@@ -62,3 +62,6 @@ Please check out
 * [API reference - SiRu client](./docs/apiref/siru_client.md)
 * [API reference - SiRu device](./docs/apiref/siru_device.md)
 * [API reference - SkyWay IoT pure API](./docs/apiref/pure_api.md)
+
+---
+Copyright. NTT Communications All Rights Reserved.
