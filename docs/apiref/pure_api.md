@@ -57,3 +57,5 @@ setInterval((ev) => {
 }, 25000)
 ```
  
+---
+Copyright. NTT Communications All Rights Reserved.
