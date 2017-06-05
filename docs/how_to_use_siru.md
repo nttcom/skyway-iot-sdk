@@ -60,7 +60,7 @@ Joining a room is super easy, just calling constructor and that's it. Here, we a
 * Name of room : ``testroom``
 * APIKEY: ``01234567-0123-0123-0123456789ab``
 
-Name of room is arbitrary string, so that in your case uses whatever string you want. However, APIKEY is obtained from our SkyWay DashBoard site. If you don't have it or want to use dedicated key, please access https://skyway.io/ds/. In test cases, set ``localhost`` in your API Key setting will work fine in most cases. Also, you need to care that apikey and origin setting in ``skyway-signaling-gateway/conf/skyway.yaml`` is configured with same value like below.
+Name of room is arbitrary string, so that you can use whatever string you want to use for your room (e.g. myprivateroom). However, you have to obtain APIKEY from our SkyWay DashBoard site. If you don't have it or want to use dedicated key for IoT app, please access https://skyway.io/ds/. In test cases, set ``localhost`` in your API Key setting will work fine in almost cases. Also, you need to care that apikey and origin setting in ``skyway-signaling-gateway/conf/skyway.yaml`` is configured properly (both client and device has to have same value pair).
 
 ```yaml
 secure: true
@@ -123,7 +123,7 @@ Since media streaming is handled by SSG in itself. We don't need any coding in d
 
 ## Getting published data from device
 
-SiRu supports pub/sub messaging inside room. Here, we will show you how to handle publised data from device on client. In this example, device will publish timestamp every 1 seconds with topic of ``timestamp``.
+SiRu supports pub/sub messaging inside room with full-mesh P2P technology (no relay server!!). Here, we will show you how to handle publised data from device on client. In this example, device will publish timestamp every 1 seconds with topic of ``timestamp``.
 
 ### for client
 
@@ -153,7 +153,9 @@ device.on('connect', () => {
 
 ## Use REST interface from client to device
 
-SiRu supports REST interface similar to ``fetch()`` for client side using target ``uuid`` and express way handling. With this interface, client can easily get data from device and operate it. Here, this example, we will show you how to ``GET /echo`` in this framework.
+SiRu supports REST interface similar to ``fetch()`` for client side using target ``uuid`` and express way handling. Usually you need to call server FQDN to indicate target server. However, in SkyWay IoT SDK model, we do not need to expose any information for device such as public FQDN. Since connection will be dinamically established on the fly basis in WebRTC protocol, we don't need to have permanent global connectivity for the device. Instance of public FQDN, we use ``uuid`` for distinguishing each devices. We don't need any firewall setting in front of NAT box! This is so powerful!! Without any relay server and complicated firewall setting, you can access your device wherever you want!!
+
+With this interface, client can easily get data from device and operate it. Here, in this example, we will show you how to ``GET /echo`` in this framework.
 
 ### for client
 
@@ -178,7 +180,7 @@ device.get('/echo/:message', (req, res) => {
 }
 ```
 
-We notice you that do not request large data with ``fetch()`` at this moment. We recommend you under 1K bytes of data. At this moment, SiRu-device chunked large data internally, however when number of chunk get larger, it get unstable (data loss tend to happen internally).
+We notice you that do not request large data with ``fetch()`` at this moment. We recommend you under 1K bytes of data. At this moment, SiRu-device chunked large data internally, however when number of chunk get larger, it get unstable (data loss tend to happen internally, of course we know that we need to fix it).
 
 ## Full sample code
 
