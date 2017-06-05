@@ -159,3 +159,6 @@ client.fetch(path_with_uuid)
   .then(res => res.json())
   .then(obj => ...)
 ```
+
+---
+Copyright. NTT Communications All Rights Reserved.
