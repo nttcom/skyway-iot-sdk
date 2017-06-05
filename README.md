@@ -60,9 +60,9 @@ We tested these platforms at this moment.
   - Ubuntu 16.04
   - Raspbian Jessie
 * client
-  - Chrome (recommended)
+  - Chrome
   - Firefox
-  
+
 ## Dive In!
 
 Please check out
