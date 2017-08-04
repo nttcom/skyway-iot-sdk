@@ -18,7 +18,7 @@ SiRu has two libraries, one is for client app and another is for device.
 SiRu-client is SiRu library for client app. If you like ``<script>`` way,
 
 ```html
-<script src="https://s3-us-west-1.amazonaws.com/skyway-iot-sdk/dist/SiRuClient.js"></script>
+<script src="https://nttcom.github.io/skyway-siru-client/dist/skyway-siru-client.min.js"></script>
 ```
 
 You don't need including skyway library, since it is already involved in siru-client.
@@ -98,22 +98,16 @@ Here, meta data has ``uuid`` property which is automatically allocated while 1st
 ### for client
 
 ```js
-client.on('meta', meta => {
-  // obtain meta data from each device joined in the room
-  const uuid = meta.uuid
-
+client.on('device:connected', (uuid, profile) => {
   client.requestStreaming(uuid)
+    .then('stream', (stream) => {
+      const video = document.querySelector('video')
+      video.srcObject = stream
 
-})
-
-// when media stream arrived, `stream` event will be fired. Each device is identified by uuid
-client.on('stream', (stream, uuid) => {
-  const video = document.querySelector('video')
-  video.srcObject = stream
-
-  video.onloadedmetadata = (ev) => {
-    video.play()
-  }
+      video.onloadedmetadata = (ev) => {
+        video.play()
+      }
+    })
 })
 ```
 
@@ -202,7 +196,7 @@ Now you trained how to code within SkyWay IoT SDK framework. With rewriting and 
 
 More detail about our API, please check below
 
-* [API reference - SiRu Client](./apiref/siru_client.md)
+* [API reference - SiRu Client](https://github.com/nttcom/skyway-siru-client/blob/master/docs/SiRuClient.md)
 * [API reference - SiRu Device](./apiref/siru_device.md)
 * [API reference - Pure API](./apiref/pure_api.md)
 
