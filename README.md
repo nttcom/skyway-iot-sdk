@@ -26,18 +26,19 @@ client.on('connect', () => {
     // fetch echo api
     client.fetch( uuid+'/echo/hello' )
       .then(res => res.text())
-      .then(text => console.log(text))
+      .then(text => console.log(text)) // #=> 'hello'
 
     // request remote camera streaming
     client.requestStreaming(uuid)
       .then(stream => video.srcObject = stream)
     
     // subscribe each topic
-    profile.topics.forEach(topic => client.subscribe(topic.name))
+    client.subscribe('topic/temperature')
   })
 
   client.on('message', (topic, mesg) => {
     console.log(topic, mesg)
+    // #=> 'topic/temperature 22.4'
   })
 })
 ```
@@ -47,13 +48,17 @@ client.on('connect', () => {
 ```javascript
 const device = new SiRuDevice('myroom')
 
+// set fetch response
 device.get('/echo/:mesg', (req, res) => {
   const mesg = req.params.mesg
 
   res.send(mesg)
 })
 
-device.publish('topic/temperature', 42)
+// every 10sec, we will publish dummy temprature data
+setInterval(ev => {
+  device.publish('topic/temperature', '22.4')
+}, 10000)
 ```
 
 Please note that there is no code to handle media streaming in the device side. For media streaming, some configuration and running media streaming process, such as gstreamer, are needed at IoT device side but no coding is required.
