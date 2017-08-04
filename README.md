@@ -81,7 +81,7 @@ Please check out
 * [How to Install](./docs/how_to_install.md)
 * [Getting Started - How to use sample app](./docs/how_to_use_sample_app.md)
 * [Getting Started - SkyWay IoT Room Utility(SiRu)](./docs/how_to_use_siru.md)
-* [API reference - SiRu client](./docs/apiref/siru_client.md)
+* [API reference - SiRu client](https://github.com/nttcom/skyway-siru-client/blob/master/docs/SiRuClient.md)
 * [API reference - SiRu device](./docs/apiref/siru_device.md)
 * [API reference - SkyWay IoT pure API](./docs/apiref/pure_api.md)
 
