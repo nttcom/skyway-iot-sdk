@@ -17,23 +17,28 @@ Coding with SkyWay IoT SDK is super easy, especially you use SiRu (SkyWay IoT Ro
 **for client**
 
 ```javascript
+// obtain APIKEY from skyway.io.
+// Don't forget to config your domain in APIKEY setting in https://skyway.io/ds.
 const client = new SiRuClient('myroom', {key: 'YOUR_API_KEY'})
 
-client.on('meta', meta => {
-  const uuid = meta.uuid // uuid of connected device
+client.on('connect', () => {
+  client.on('device:connected', (uuid, profile) => {
+    // fetch echo api
+    client.fetch( uuid+'/echo/hello' )
+      .then(res => res.text())
+      .then(text => console.log(text))
 
-  // fetch echo api
-  client.fetch( uuid+'/metrics/temperature' )
-    .then(res => res.text())
-    .then(text => console.log(text))
-    // #=> e.g. 60.00
+    // request remote camera streaming
+    client.requestStreaming(uuid)
+      .then(stream => video.srcObject = stream)
+    
+    // subscribe each topic
+    profile.topics.forEach(topic => client.subscribe(topic.name))
+  })
 
-  // request media streaming from IoT device
-  client.requestStreaming(profile.uuid)
-})
-
-client.on("stream", (stream, uuid) => {
-  display(uuid, stream)
+  client.on('message', (topic, mesg) => {
+    console.log(topic, mesg)
+  })
 })
 ```
 
