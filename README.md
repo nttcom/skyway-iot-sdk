@@ -47,12 +47,13 @@ client.on('connect', () => {
 ```javascript
 const device = new SiRuDevice('myroom')
 
-device.get('/metrics/:target', (req, res) => {
-  const target = req.params.target
-  const metric = getMetric(target)
+device.get('/echo/:mesg', (req, res) => {
+  const mesg = req.params.mesg
 
-  res.send(metric)
+  res.send(mesg)
 })
+
+device.publish('topic/temperature', 42)
 ```
 
 Please note that there is no code to handle media streaming in the device side. For media streaming, some configuration and running media streaming process, such as gstreamer, are needed at IoT device side but no coding is required.
