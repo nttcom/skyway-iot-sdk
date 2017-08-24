@@ -62,7 +62,7 @@ sudo make configs
 
 ``/opt/janus/etc/janus/janus.plugin.streaming.cfg``
 
-Comment out several lines for ``[gstreamer-sample]``, ``[file-live-sample]`` and ``[file-ondemand-sample]``. Then append example streaming setting shown below
+Comment out several lines for ``[gstreamer-sample]``, ``[file-live-sample]`` and ``[file-ondemand-sample]``. Then append example streaming setting shown below (you can check sample configs on [this gist](https://gist.github.com/KensakuKOMATSU/430abf94081cfa9f377a7461eaaf59d7))
 
 ```
 [skywayiotsdk-example]
