@@ -32,7 +32,7 @@ $ npm install skyway-siru-client
 then,
 
 ```js
-import SiRuClient from 'skyway-siru-client'
+const SiRuClient = require('skyway-siru-client')
 ```
 
 in your code.
@@ -100,7 +100,7 @@ Here, meta data has ``uuid`` property which is automatically allocated while 1st
 ```js
 client.on('device:connected', (uuid, profile) => {
   client.requestStreaming(uuid)
-    .then('stream', (stream) => {
+    .then(stream => {
       const video = document.querySelector('video')
       video.srcObject = stream
 
