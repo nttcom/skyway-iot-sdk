@@ -60,7 +60,7 @@ Joining a room is super easy, just calling constructor and that's it. Here, we a
 * Name of room : ``testroom``
 * APIKEY: ``01234567-0123-0123-0123456789ab``
 
-Name of room is arbitrary string, so that you can use whatever string you want to use for your room (e.g. myprivateroom). However, you have to obtain APIKEY from our SkyWay DashBoard site. If you don't have it or want to use dedicated key for IoT app, please access https://skyway.io/ds/. In test cases, set ``localhost`` in your API Key setting will work fine in almost cases. Also, you need to care that apikey and origin setting in ``skyway-signaling-gateway/conf/skyway.yaml`` is configured properly (both client and device has to have same value pair).
+Name of room is arbitrary string, so that you can use whatever string you want to use for your room (e.g. myprivateroom). However, you have to obtain APIKEY from our SkyWay DashBoard site. If you don't have it or want to use dedicated key for IoT app, please access https://webrtc.ecl.ntt.com/en/login.html/. In test cases, set ``localhost`` in your API Key setting will work fine in almost cases. Also, you need to care that apikey and origin setting in ``skyway-signaling-gateway/conf/skyway.yaml`` is configured properly (both client and device has to have same value pair).
 
 ```yaml
 secure: true
