@@ -7,7 +7,7 @@ SkyWay IoT SDK is kind of framework rather than saying libraries. This framework
 - [Janus Gateway + SkyWay Plugin](https://github.com/nttcom/janus-skywayiot-plugin)
   - WebRTC gateway feature within the framework. For example, Janus Gateway establish WebRTC P2P connection between device and client, then relays pure RTP base media streaming data ( provided by streaming process explained below ) into WebRTC media streaming protocol (ICE + SRTP). By using SkyWay Plugin, developer can control Janus Gateway feature from client api outside of Janus Signaling Protocol. Also, it gives a way to connect 3rd party app and client app leveraging DataChannel relayed by Janus Gateway.
 - [SkyWay Signaling Gateway (SSG)](https://github.com/nttcom/skyway-signaling-gateway)
-  - Signaling Protocol gateway between Janus REST API and SkyWay Signaling Server. Since it transform SkyWay's signaling protocol such as offer, answer and ice candidate into Janus REST API inside private network, you can easily develop global accessible WebRTC-IoT app. Because of this building block, you can get not only global accesibility but also a way for developping to control Janus Gateway by (new SkyWay API)[http://nttcom.github.io/skyway/en/alpha-release.html]. Also, it relays DataChannel data between Janus Gateway and 3rd party app.
+  - Signaling Protocol gateway between Janus REST API and SkyWay Signaling Server. Since it transform SkyWay's signaling protocol such as offer, answer and ice candidate into Janus REST API inside private network, you can easily develop global accessible WebRTC-IoT app. Because of this building block, you can get not only global accesibility but also a way for developping to control Janus Gateway by (release version of SkyWay API)[https://webrtc.ecl.ntt.com/en/js-tutorial.html]. Also, it relays DataChannel data between Janus Gateway and 3rd party app.
 - Streaming Process
   - Streaming Process is used for generating stream data. It generates rtp stream that will be received by Janus Gateway. This rtp data will be relayed to client app by WebRTC P2P protocol. Typically, gstreamer is used for this purpose. But in case of generating stream from file, this process is not needed. Just configuring file path to Janus Gateway is enought for it.
 - Device side 3rd party app
@@ -91,7 +91,7 @@ secure_port=8089
 
 ```
 [nat]
-stun_server = stun.skyway.io
+stun_server = stun.webrtc.ecl.ntt.com
 stun_port = 3478
 
 turn_server = 52.41.145.197
@@ -119,12 +119,12 @@ npm install
 ``skyway-signaling-gateway/conf/skyway.yaml``
 
 ```bash
-## set API key and origin according to the setting you configured in https://skyway.io/ds.
+## set API key and origin according to the setting you configured in our dashboard https://webrtc.ecl.ntt.com/en/login.html.
 apikey: SET_YOUR_OWN_APIKEY
 origin: SET_YOUR_OWN_ORIGIN
 ```
 
-For obtaining apikey and setting domain of origin, please login or sign up at [Our SkyWay dashboard](https://skyway.io/ds/)
+For obtaining apikey and setting domain of origin, please login or sign up at [Our SkyWay dashboard](https://webrtc.ecl.ntt.com/en/login.html)
 
 ### Streaming Process (gstreamer)
 
