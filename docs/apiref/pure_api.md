@@ -1,21 +1,15 @@
 # API reference - SkyWay IoT Pure API
 
-In SkyWay IoT SDK framework, you can use [SkyWay's peerjs api](http://nttcom.github.io/skyway/en/docs/#JS). So, you can develop your own web app with SkyWay API.
+In SkyWay IoT SDK framework, you can use [SkyWay api](https://webrtc.ecl.ntt.com/en/js-tutorial.html) without any change. So, you can develop your own web app with SkyWay API.
 
 However, several things you have to be care while using pure SkyWay API.
 
 ## including skyway library
 
-We only support new version of [SkyWay library](http://nttcom.github.io/skyway/en/alpha-release.html). So, please use
+We only support release version of [SkyWay library](https://webrtc.ecl.ntt.com/en/developer.html).
 
 ```html
-<script type='text/javascript' src='https://cdn.skyway.io/skyway.js'></script>
-```
-
-Or
-
-```html
-<script type='text/javascript' src='https://cdn.skyway.io/skyway.min.js'></script>
+<script type='text/javascript' src='https://cdn.webrtc.ecl.ntt.com/skyway-latest.js'></script>
 ```
 
 ## media stream
