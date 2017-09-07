@@ -1,6 +1,6 @@
 # SkyWay IoT SDK
 
-Project repository for [SkyWay](https://skyway.io) IoT SDK (At this moment, open beta feature).
+Project repository for [SkyWay](https://webrtc.ecl.ntt.com/en/) IoT SDK (At this moment, open beta feature).
 
 ![iot sdk over view](https://s3-us-west-1.amazonaws.com/skyway-iot-sdk/iot-sdk-overview.png)
 
@@ -18,7 +18,8 @@ Coding with SkyWay IoT SDK is super easy, especially you use SiRu (SkyWay IoT Ro
 
 ```javascript
 // obtain APIKEY from skyway.io.
-// Don't forget to config your domain in APIKEY setting in https://skyway.io/ds.
+// Don't forget to config your domain and APIKEY in our Dashboard
+// https://webrtc.ecl.ntt.com/en/login.html.
 const client = new SiRuClient('myroom', {key: 'YOUR_API_KEY'})
 
 client.on('connect', () => {
