@@ -2,7 +2,7 @@
 
 Project repository for [SkyWay](https://webrtc.ecl.ntt.com/en/) IoT SDK (At this moment, open beta feature).
 
-![iot sdk over view](https://s3-us-west-1.amazonaws.com/skyway-iot-sdk/iot-sdk-overview.png)
+![iot sdk over view](https://s3-us-west-1.amazonaws.com/skyway-iot-sdk/skyway-iot-sdk-overview.png)
 
 ## What's SkyWay IoT SDK?
 
