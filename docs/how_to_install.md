@@ -121,7 +121,7 @@ npm install
 ```bash
 ## set API key and origin according to the setting you configured in our dashboard https://webrtc.ecl.ntt.com/en/login.html.
 apikey: SET_YOUR_OWN_APIKEY
-origin: http://localhost # You can change origin setting, if needed.
+origin: http://localhost # You can change origin setting, if needed. Be sure that FQDN has been configured in dashboard 'available domain'
 ```
 
 For obtaining apikey and setting domain of origin, please login or sign up at [Our SkyWay dashboard](https://webrtc.ecl.ntt.com/en/login.html)
