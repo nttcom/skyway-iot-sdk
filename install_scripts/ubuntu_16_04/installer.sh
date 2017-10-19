@@ -1,10 +1,8 @@
 #!/bin/bash
 
-# Script to install [SkyWay IoT SDK](https://github.com/nttcom/skyway-iot-sdk) onto a Ubuntu or Raspbian system.
+# Script to install [SkyWay IoT SDK](https://github.com/nttcom/skyway-iot-sdk) onto Ubuntu 16.04.
 #
 # Run as root or insert `sudo -E` before `bash`
-#
-# curl -sL https://somewhere/setup_skyway_iot | bash -
 
 APIKEY="THIS_KEY_WILL_BE_UPDATED"
 
@@ -146,8 +144,8 @@ print_status "Finished to install Janus"
 install_gstreamer() {
 print_status "Install gstreamer"
 
-apt-get update
-apt-get install -y gstreamer1.0
+exec_cmd "apt-get update"
+exec_cmd "apt-get install -y gstreamer1.0"
 
 print_status "Finished to install gstreamer"
 }
