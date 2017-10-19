@@ -6,10 +6,8 @@
 #
 # curl -sL https://somewhere/setup_skyway_iot | bash -
 
+APIKEY="THIS_KEY_WILL_BE_UPDATED"
 
-######################################################
-# utility functions
-######################################################
 print_status() {
     echo
     echo "## $1"
@@ -64,9 +62,6 @@ exec_cmd() {
     exec_cmd_nobail "$1" || bail
 }
 
-######################################################
-# Install Pre-required packages
-######################################################
 install_prerequired() {
 print_status "Install pre-required packages"
 
@@ -76,10 +71,6 @@ exec_cmd 'apt-get install -y git aptitude'
 print_status "Finished to install pre-required packages"
 }
 
-
-######################################################
-# Install Node 8.x
-######################################################
 install_nodejs() {
 print_status "Install node 8.x"
 
@@ -89,10 +80,6 @@ apt-get -y install nodejs build-essential
 print_status "Finished to install nodejs"
 }
 
-
-######################################################
-# Install Janus Gateway and SkyWay IoT Plugin
-######################################################
 install_janus() {
 print_status "Install required packages"
 exec_cmd "aptitude install -y libmicrohttpd-dev libjansson-dev libnice-dev libssl-dev libsrtp-dev libsofia-sip-ua-dev libglib2.0-dev libopus-dev libogg-dev libcurl4-openssl-dev pkg-config gengetopt libtool automake"
@@ -115,15 +102,47 @@ exec_cmd "rm -rf tmp"
 ## todo update configs.
 ##
 # /opt/janus/etc/janus/janus.plugin.streaming.cfg
+TARGET="/opt/janus/etc/janus/janus.plugin.streaming.cfg"
+
+exec_cmd "sed -i.bak -e '44,74 s/^/;/g' ${TARGET}"
+
+echo '; Sample config for SkyWay IoT SDK' | tee -a ${TARGET}
+echo '; This streams H.246 as video and opus as audio codec' | tee -a ${TARGET}
+echo ';' | tee -a ${TARGET}
+echo '[skywayiotsdk-example]' | tee -a ${TARGET}
+echo 'type = rtp' | tee -a ${TARGET}
+echo 'id = 1' | tee -a ${TARGET}
+echo 'description = SkyWay IoT SDK H264 example streaming' | tee -a ${TARGET}
+echo 'audio = yes' | tee -a ${TARGET}
+echo 'video = yes' | tee -a ${TARGET}
+echo 'audioport = 5002' | tee -a ${TARGET}
+echo 'audiopt = 111' | tee -a ${TARGET}
+echo 'audiortpmap = opus/48000/2' | tee -a ${TARGET}
+echo 'videoport = 5004' | tee -a ${TARGET}
+echo 'videopt = 96' | tee -a ${TARGET}
+echo 'videortpmap = H264/90000' | tee -a ${TARGET}
+echo 'videofmtp = profile-level-id=42e028\;packetization-mode=1' | tee -a ${TARGET}
+
 # /opt/janus/etc/janus/janus.transport.http.cfg
+TARGET="/opt/janus/etc/janus/janus.transport.http.cfg"
+
+exec_cmd "sed -i.bak -e 's/^https = no/https = yes/' ${TARGET}"
+exec_cmd "sed -i -e 's/^;secure_port/secure_port/g' ${TARGET}"
+
 # /opt/janus/etc/janus/janus.cfg
+TARGET="/opt/janus/etc/janus/janus.cfg"
+
+exec_cmd "sed -i.bak -e 's/^;stun_server = stun.voip.eutelia.it/stun_server = stun.webrtc.ecl.ntt.com/' ${TARGET}"
+exec_cmd "sed -i -e 's/^;stun_port/stun_port/' ${TARGET}"
+exec_cmd "sed -i -e 's/^;turn_server = myturnserver.com/turn_server = 52.41.145.197/' ${TARGET}"
+exec_cmd "sed -i -e 's/^;turn_port = 3478/turn_port = 443/' ${TARGET}"
+exec_cmd "sed -i -e 's/^;turn_type = udp/turn_type = tcp/' ${TARGET}"
+exec_cmd "sed -i -e 's/^;turn_user = myuser/turn_user = siruuser/' ${TARGET}"
+exec_cmd "sed -i -e 's/^;turn_pwd = mypassword/turn_pwd = s1rUu5ev/' ${TARGET}"
 
 print_status "Finished to install Janus"
 }
 
-######################################################
-# Install gstreamer
-######################################################
 install_gstreamer() {
 print_status "Install gstreamer"
 
@@ -133,9 +152,7 @@ apt-get install -y gstreamer1.0
 print_status "Finished to install gstreamer"
 }
 
-######################################################
-# Install SkyWay Signaling Gateway (SSG)
-######################################################
+
 install_ssg() {
 exec_cmd "mkdir skyway-iot"
 
@@ -146,14 +163,12 @@ exec_cmd "cd ./skyway-iot;git clone https://github.com/nttcom/skyway-signaling-g
 ## todo update configs.
 ##
 # skyway-signaling-gateway/conf/skyway.yaml (apply APIKEY variable)
+print_status "Update config"
+exec_cmd "cd ./skyway-iot/skyway-signaling-gateway/conf;sed -i.bak -e 's/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/${APIKEY}/' skyway.yaml"
 
 print_status "Finished to install SSG"
 }
 
-
-############################################################
-# Install SkyWay IoT Room Utility for device  (SiRu-device)
-############################################################
 install_siru_device() {
 print_status "Install SkyWay IoT Room Utility for device"
 exec_cmd "cd ./skyway-iot;git clone https://github.com/nttcom/skyway-siru-device.git;cd skyway-siru-device;npm install"
@@ -161,13 +176,6 @@ exec_cmd "cd ./skyway-iot;git clone https://github.com/nttcom/skyway-siru-device
 print_status "Finished to install SkyWay IoT Room Utility for device"
 }
 
-
-
-######################################################
-# setup script
-#
-# Install all required packages, accordingly
-######################################################
 setup() {
 print_bold "Install pre-required packages"
 install_prerequired
@@ -186,24 +194,16 @@ print_bold "Install SkyWay IoT Room Utility for device"
 install_siru_device
 }
 
-######################################################
-# start script
-#
-# Show prompt for APIKEY, then start setup script
-######################################################
 start() {
 print_bold "Input your SkyWay APIKEY" "APIKEY can be obtained at our dashboard.\n    (https://console-webrtc-free.ecl.ntt.com/users/login).\n  Please note that you need to set 'localhost' in your Available domains setting.\n"
 read -p "Your APIKEY: " APIKEY
 
-read -p "Attempt to start installing SkyWay IoT SDK. Is it ok? [Y/n] " PR
+read -p "Attempt to start installing SkyWay IoT SDK. Is it ok? [Y/n] " IN
 
-case ${PR} in
+case ${IN} in
   "" | "Y" | "y" | "yes" | "Yes" | "YES" ) setup;;
   * ) print_status "Aborted";;
 esac
 }
 
-#####################################################
-# execute start script!
-#####################################################
 start
