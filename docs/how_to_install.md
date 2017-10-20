@@ -2,7 +2,7 @@
 
 SkyWay IoT SDK is kind of framework rather than saying libraries. This framework consists of several building blocks as shown below.
 
-![iot sdk over view](https://s3-us-west-1.amazonaws.com/skyway-iot-sdk/skyway-iot-sdk-overview.png)
+![iot sdk over view](https://nttcom.github.io/skyway-iot-sdk/images/skyway-iot-sdk-overview.png)
 
 - [Janus Gateway + SkyWay Plugin](https://github.com/nttcom/janus-skywayiot-plugin)
   - WebRTC gateway feature within the framework. For example, Janus Gateway establish WebRTC P2P connection between device and client, then relays pure RTP base media streaming data ( provided by streaming process explained below ) into WebRTC media streaming protocol (ICE + SRTP). By using SkyWay Plugin, developer can control Janus Gateway feature from client api outside of Janus Signaling Protocol. Also, it gives a way to connect 3rd party app and client app leveraging DataChannel relayed by Janus Gateway.
