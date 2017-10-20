@@ -21,7 +21,7 @@ node app
 
 * Test Video Streaming Process
 
-** raspbian sketch
+** raspbian sketch **
 
 ```bash
 gst-launch-1.0 videotestsrc ! \
@@ -38,7 +38,7 @@ audiotestsrc ! \
     rtpopuspay ! udpsink host=127.0.0.1 port=5002
 ```
 
-** Ubuntu16.04
+** Ubuntu16.04 **
 
 ```bash
 gst-launch-1.0 videotestsrc ! \
@@ -87,6 +87,8 @@ If you have USB camera and mic inside, plug it to your IoT device.
 
 Then stop current Streaming Process wth Ctrl+C then execute other process which is for usb camera.
 
+** raspbian sketch **
+
 ```bash
 gst-launch-1.0 v4l2src device=/dev/video0 ! \
   video/x-raw,width=640,height=480,framerate=30/1 ! \
@@ -96,7 +98,7 @@ gst-launch-1.0 v4l2src device=/dev/video0 ! \
     udpsink host=127.0.0.1 port=5004 \
 ```
 
-** Ubuntu16.04
+** Ubuntu16.04 **
 
 ```bash
 gst-launch-1.0 v4l2src device=/dev/video0 ! \
