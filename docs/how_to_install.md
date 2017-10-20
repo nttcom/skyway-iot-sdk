@@ -130,13 +130,23 @@ For obtaining apikey and setting domain of origin, please login or sign up at [O
 
 * install gstreamer
 
+**raspbian stretch**
+
 ```bash
 sudo apt-get update
-sudo apt-get install gstreamer1.0 libgstreamer1.0-0 \ 
+sudo apt-get install libgstreamer1.0-0 \ 
       libgstreamer1.0-dev gstreamer1.0-nice gstreamer1.0-plugins-base \
       gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
-      gstreamer1.0-doc gstreamer1.0-tools
+      gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-omx
 ```
+
+**ubuntu16.04**
+
+```bash
+sudo apt-get update
+sudo apt-get install libgstreamer1.0
+```
+
 
 ### SiRu-device (utility library for building 3rd party app)
 
