@@ -15,8 +15,7 @@ Here, we assume that SSG and SiRu-device is installed in your home directory.
 * SSG
 
 ```bash
-cd ~/skyway-signaling-gateway
-node app
+node skyway-signaling-gateway/app
 ```
 
 * Test Video Streaming Process
@@ -60,9 +59,7 @@ audiotestsrc ! \
 * sample 3rd party app
 
 ```bash
-$ cd ~/skyway-siru-device
-$ cd examples
-$ node metrics
+$ node skyway-siru-device/examples/metrics
 ```
 
 ## Try sample web app
