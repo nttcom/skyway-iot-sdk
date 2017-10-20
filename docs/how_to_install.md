@@ -6,7 +6,7 @@ For using SkyWay IoT SDK, you need to setup SkyWay APIKEY for your app. More det
 
 ## Install by installer
 
-Run installer.sh as follows
+Run ``installer.sh`` as follows
 
 > (note: Oct 20th, 2017)
 > 
