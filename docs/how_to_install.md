@@ -22,7 +22,8 @@ So you need to install above building blocks on linux based IoT devices, such as
 Run installer.sh as follows
 
 > (note: Oct 20th, 2017)
-> We recommend you to use [Raspbian jessie](https://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2017-07-05/), since apt-get installed gstreamer1.0 on Raspbian stretch
+> 
+> We recommend you to use [Raspbian jessie](https://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2017-07-05/), since apt-get installed gstreamer1.0 on Raspbian stretch has issues at this moment.
 
 * Ubuntu16.04 or Raspbian jessie
 
