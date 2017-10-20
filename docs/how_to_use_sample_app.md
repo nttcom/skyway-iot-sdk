@@ -21,7 +21,7 @@ node app
 
 * Test Video Streaming Process
 
-**raspbian stretch**
+**Raspbian**
 
 ```bash
 gst-launch-1.0 videotestsrc ! \
@@ -87,7 +87,7 @@ If you have USB camera and mic inside, plug it to your IoT device.
 
 Then stop current Streaming Process wth Ctrl+C then execute other process which is for usb camera.
 
-**raspbian stretch**
+**Raspbian**
 
 ```bash
 gst-launch-1.0 v4l2src device=/dev/video0 ! \
