@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# Script to install [SkyWay IoT SDK](https://github.com/nttcom/skyway-iot-sdk) onto Ubuntu 16.04.
+# Script to install [SkyWay IoT SDK](https://github.com/nttcom/skyway-iot-sdk) onto general debian series.
+# Tested environments are:
+#   Ubuntu16.04
+#   Raspbian jessie
 #
 # Run as root or insert `sudo -E` before `bash`
 
