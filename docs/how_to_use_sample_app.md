@@ -91,7 +91,7 @@ Then stop current Streaming Process wth Ctrl+C then execute other process which 
 
 ```bash
 gst-launch-1.0 v4l2src device=/dev/video0 ! \
-  video/x-raw,width=640,height=480,framerate=30/1 ! \
+  video/x-raw,width=640,height=480,framerate=15/1 ! \
   videoscale ! videorate ! videoconvert ! timeoverlay ! \
   omxh264enc target-bitrate=2000000 control-rate=variable ! \
   h264parse ! rtph264pay config-interval=1 pt=96 ! \
@@ -102,7 +102,7 @@ gst-launch-1.0 v4l2src device=/dev/video0 ! \
 
 ```bash
 gst-launch-1.0 v4l2src device=/dev/video0 ! \
-  video/x-raw,width=640,height=480,framerate=30/1 ! \
+  video/x-raw,width=640,height=480,framerate=15/1 ! \
   timeoverlay ! \
   x264enc aud=false key-int-max=1 tune=zerolatency intra-refresh=true ! \
   "video/x-h264,profile=constrained-baseline,level=(string)3.1" ! \
