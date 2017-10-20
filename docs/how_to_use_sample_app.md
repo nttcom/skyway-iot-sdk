@@ -19,12 +19,42 @@ cd ~/skyway-signaling-gateway
 node app
 ```
 
-* sample H.264 Streaming Process
+* Test Video Streaming Process
+
+** raspbian sketch
 
 ```bash
-cd ~/skyway-signaling-gateway
-cd skywayiot-sdk-test
-bash h264_streaming_testsrc.sh
+gst-launch-1.0 videotestsrc ! \
+  video/x-raw,width=640,height=480,framerate=30/1 ! \
+  videoscale ! videorate ! videoconvert ! timeoverlay ! \
+  omxh264enc target-bitrate=2000000 control-rate=variable ! \
+  h264parse ! rtph264pay config-interval=1 pt=96 ! \
+    udpsink host=127.0.0.1 port=5004 \
+audiotestsrc ! \
+  audioconvert ! queue ! \
+  audioresample ! \
+  audio/x-raw,channels=1,rate=16000 ! \
+  opusenc bitrate=20000 ! \
+    rtpopuspay ! udpsink host=127.0.0.1 port=5002
+```
+
+** Ubuntu16.04
+
+```bash
+gst-launch-1.0 videotestsrc ! \
+  video/x-raw,width=640,height=480,framerate=30/1 ! \
+  timeoverlay ! \
+  x264enc aud=false key-int-max=1 tune=zerolatency intra-refresh=true ! \
+  "video/x-h264,profile=constrained-baseline,level=(string)3.1" ! \
+  rtph264pay pt=96 ! \
+  capssetter caps='application/x-rtp,profile-level-id=(string)42e01f' ! \
+  udpsink host=127.0.0.1 port=5004
+audiotestsrc ! \
+  audioconvert ! queue ! \
+  audioresample ! \
+  audio/x-raw,channels=1,rate=16000 ! \
+  opusenc bitrate=20000 ! \
+    rtpopuspay ! udpsink host=127.0.0.1 port=5002
 ```
 
 * sample 3rd party app
@@ -37,7 +67,7 @@ $ node metrics
 
 ## Access to sample web app
 
-Before trying to access sample web app, you need to set ``nttcom.github.io`` in your SkyWay API Key settings.
+Before trying to access sample web app, you need to set ``nttcom.github.io`` in your SkyWay API Key settings (available domain).
 
 To check installation is completely finished and your environment working properly, you can use our sample web site.
 
@@ -58,8 +88,25 @@ If you have USB camera and mic inside, plug it to your IoT device.
 Then stop current Streaming Process wth Ctrl+C then execute other process which is for usb camera.
 
 ```bash
-## ~/skyway-signaling-gateway/skywayiot-sdk-test
-$ bash h264_streaming_usbcam.sh
+gst-launch-1.0 v4l2src device=/dev/video0 ! \
+  video/x-raw,width=640,height=480,framerate=30/1 ! \
+  videoscale ! videorate ! videoconvert ! timeoverlay ! \
+  omxh264enc target-bitrate=2000000 control-rate=variable ! \
+  h264parse ! rtph264pay config-interval=1 pt=96 ! \
+    udpsink host=127.0.0.1 port=5004 \
+```
+
+** Ubuntu16.04
+
+```bash
+gst-launch-1.0 v4l2src device=/dev/video0 ! \
+  video/x-raw,width=640,height=480,framerate=30/1 ! \
+  timeoverlay ! \
+  x264enc aud=false key-int-max=1 tune=zerolatency intra-refresh=true ! \
+  "video/x-h264,profile=constrained-baseline,level=(string)3.1" ! \
+  rtph264pay pt=96 ! \
+  capssetter caps='application/x-rtp,profile-level-id=(string)42e01f' ! \
+  udpsink host=127.0.0.1 port=5004
 ```
 
 Then, you may see that video view automatically changed from test video to real camera.
