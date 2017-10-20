@@ -28,7 +28,7 @@ rm installer.sh; chown -R ${USER}:${USER} skyway-iot
 
 ## Install manually
 
-See [here](./how_to_install_manually.md).
+When you need to setup SkyWay IoT SDK manually for some reason, see [this instruction](./how_to_install_manually.md) page.
 
 ## Next Step
 
