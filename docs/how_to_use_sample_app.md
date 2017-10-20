@@ -77,7 +77,7 @@ https://nttcom.github.io/skyway-siru-sample/dist/
 
 Then you would see the test video stream and realtime metrics as shwon below.
 
-![sample app screenshot with test src](https://s3-us-west-1.amazonaws.com/skyway-iot-sdk/iot_sample_app_bar.png)
+![sample app screenshot with test src](https://nttcom.github.io/skyway-iot-sdk/images/iot_sample_app_bar.png)
 
 ## Change video source - real camera
 
