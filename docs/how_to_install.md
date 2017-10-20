@@ -34,7 +34,7 @@ rm installer.sh; sudo chown -R ${USER}:${USER} skyway-iot
 
 * Raspbian stretch
 
-```
+```bash
 curl https://nttcom.github.io/skyway-iot-sdk/install_scripts/raspbian_stretch/installer.sh > installer.sh; sudo -E bash - installer.sh
 rm installer.sh; chown -R ${USER}:${USER} skyway-iot
 ```
