@@ -9,7 +9,8 @@ For using SkyWay IoT SDK, you need to setup SkyWay APIKEY for your app. More det
 Run installer.sh as follows
 
 > (note: Oct 20th, 2017)
-> We recommend you to use [Raspbian jessie](https://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2017-07-05/), since apt-get installed gstreamer1.0 on Raspbian stretch
+> 
+> We recommend you to use [Raspbian jessie](https://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2017-07-05/), since apt-get installed gstreamer1.0 on Raspbian stretch has issues at this moment.
 
 * Ubuntu16.04 or Raspbian jessie
 
@@ -20,7 +21,7 @@ rm installer.sh; sudo chown -R ${USER}:${USER} skyway-iot
 
 * Raspbian stretch
 
-```
+```bash
 curl https://nttcom.github.io/skyway-iot-sdk/install_scripts/raspbian_stretch/installer.sh > installer.sh; sudo -E bash - installer.sh
 rm installer.sh; chown -R ${USER}:${USER} skyway-iot
 ```
