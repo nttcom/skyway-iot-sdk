@@ -95,7 +95,7 @@ gst-launch-1.0 v4l2src device=/dev/video0 ! \
   videoscale ! videorate ! videoconvert ! timeoverlay ! \
   omxh264enc target-bitrate=2000000 control-rate=variable ! \
   h264parse ! rtph264pay config-interval=1 pt=96 ! \
-    udpsink host=127.0.0.1 port=5004 \
+    udpsink host=127.0.0.1 port=5004
 ```
 
 **Ubuntu16.04**
