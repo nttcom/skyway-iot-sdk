@@ -28,7 +28,7 @@ rm installer.sh; chown -R ${USER}:${USER} skyway-iot
 
 When you run ``installer.sh``, you will see the prompt as shown below. Please input your **APIKEY** there.
 
-![installer](https://nttcom.github.io/skyway-iot-sdk/images/installer.jpg)
+![installer](https://nttcom.github.io/skyway-iot-sdk/images/install.jpg)
 
 ## Install manually
 
