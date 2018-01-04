@@ -23,7 +23,7 @@ node skyway-signaling-gateway/app
 **Raspbian**
 
 ```bash
-gst-launch-1.0 videotestsrc ! \
+gst-launch-1.0 videotestsrc is-live=true ! \
   video/x-raw,width=640,height=480,framerate=30/1 ! \
   videoscale ! videorate ! videoconvert ! timeoverlay ! \
   omxh264enc target-bitrate=2000000 control-rate=variable ! \
@@ -40,13 +40,13 @@ audiotestsrc ! \
 **Ubuntu16.04**
 
 ```bash
-gst-launch-1.0 videotestsrc ! \
+gst-launch-1.0 videotestsrc is-live=true ! \
   video/x-raw,width=640,height=480,framerate=30/1 ! \
   timeoverlay ! \
   x264enc aud=false key-int-max=1 tune=zerolatency intra-refresh=true ! \
   "video/x-h264,profile=constrained-baseline,level=(string)3.1" ! \
   rtph264pay pt=96 ! \
-  capssetter caps='application/x-rtp,profile-level-id=(string)42e01f' ! \
+  capssetter caps='application/x-rtp,profile-level-id=(string)42c01f' ! \
   udpsink host=127.0.0.1 port=5004
 audiotestsrc ! \
   audioconvert ! queue ! \
@@ -104,7 +104,7 @@ gst-launch-1.0 v4l2src device=/dev/video0 ! \
   x264enc aud=false key-int-max=1 tune=zerolatency intra-refresh=true ! \
   "video/x-h264,profile=constrained-baseline,level=(string)3.1" ! \
   rtph264pay pt=96 ! \
-  capssetter caps='application/x-rtp,profile-level-id=(string)42e01f' ! \
+  capssetter caps='application/x-rtp,profile-level-id=(string)42c01f' ! \
   udpsink host=127.0.0.1 port=5004
 ```
 
