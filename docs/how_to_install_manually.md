@@ -80,7 +80,7 @@ audiortpmap = opus/48000/2
 videoport = 5004
 videopt = 96
 videortpmap = H264/90000
-videofmtp = profile-level-id=42e028\;packetization-mode=1
+videofmtp = profile-level-id=42c01fd\;packetization-mode=1
 ```
 
 ``/opt/janus/etc/janus/janus.transport.http.cfg``
