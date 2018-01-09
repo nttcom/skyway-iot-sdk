@@ -7,8 +7,6 @@
 #
 # Run as root or insert `sudo -E` before `bash`
 
-APIKEY="THIS_KEY_WILL_BE_UPDATED"
-
 print_status() {
     echo
     echo "## $1"
@@ -165,7 +163,7 @@ print_status "Finished to install SSG"
 
 install_mosquitto() {
 print_status "Install mosquitto"
-exec_cmd "apt-get install mosquitto mosquitto-clients"
+exec_cmd "apt-get install -y mosquitto mosquitto-clients"
 
 print_status "Finished to install mosquitto and clients"
 }
