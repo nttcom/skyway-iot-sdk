@@ -153,8 +153,6 @@ print_status "Finished to install gstreamer"
 
 
 install_ssg() {
-exec_cmd "mkdir skyway-iot"
-
 print_status "Install SkyWay Signaling Gateway"
 exec_cmd "npm install -g skyway-signaling-gateway@0.5.6"
 
