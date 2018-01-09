@@ -16,7 +16,7 @@ Run ``installer.sh`` as follows
 
 ```bash
 curl https://nttcom.github.io/skyway-iot-sdk/install_scripts/debian_based/installer.sh > installer.sh; sudo -E bash - installer.sh
-rm installer.sh; sudo chown -R ${USER}:${USER} skyway-iot
+rm installer.sh; sudo chown -R ${USER}:$(id -gn $USER) skyway-iot
 ```
 
 * Raspbian stretch
