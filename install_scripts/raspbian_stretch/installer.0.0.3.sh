@@ -1,11 +1,9 @@
 #!/bin/bash
 
-# Script to install [SkyWay IoT SDK](https://github.com/nttcom/skyway-iot-sdk) onto general debian series.
-# Tested environments are:
-#   Ubuntu16.04
-#   Raspbian jessie
+# Script to install [SkyWay IoT SDK](https://github.com/nttcom/skyway-iot-sdk) onto Raspbian stretch.
 #
-# Run as root or insert `sudo -E` before `bash`
+# curl -sL <script_url> | sudo -E bash -
+
 
 print_status() {
     echo
@@ -146,7 +144,7 @@ install_gstreamer() {
 print_status "Install gstreamer"
 
 exec_cmd "apt-get update"
-exec_cmd "apt-get install -y gstreamer1.0"
+exec_cmd "apt-get install -y libgstreamer1.0-0 libgstreamer1.0-dev gstreamer1.0-nice gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-omx"
 
 print_status "Finished to install gstreamer"
 }
@@ -154,6 +152,7 @@ print_status "Finished to install gstreamer"
 
 install_ssg() {
 print_status "Install SkyWay Signaling Gateway"
+
 exec_cmd "npm install -g skyway-signaling-gateway@0.5.6"
 
 print_status "Finished to install SSG"
@@ -162,7 +161,6 @@ print_status "Finished to install SSG"
 install_mosquitto() {
 print_status "Install mosquitto"
 exec_cmd "apt-get install -y mosquitto mosquitto-clients"
-
 print_status "Finished to install mosquitto and clients"
 }
 
@@ -185,12 +183,11 @@ install_mosquitto
 }
 
 print_final() {
-  print_bold "Installation finished!" "run 'ssg setup' (You'll need to get your API key from https://webrtc.ecl.ntt.com/en/login.html.)"
+  print_bold "Installation finished!" "run 'ssg setup'  (You'll need to get your API key from https://webrtc.ecl.ntt.com/en/login.html.)"
 }
 
 start() {
   install
-
   print_final
 }
 
