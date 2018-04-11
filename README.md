@@ -35,7 +35,7 @@ client.on('meta', profile => {
 
 * Running 3rd party app is not needed any more.
 * MQTT communication feature is supported.
-* Large size data transfer ( about 60KB ) is uspported.
+* Large size data transfer ( about 60KB ) is supported.
 * Stability improved.
 
 ## Platforms
@@ -44,7 +44,7 @@ Platforms shown berow are being tested at this moment.
 
 * device
   - Ubuntu 16.04
-  - Raspbian Jessie
+  - Raspbian Jessie and Stretch
 * client
   - Chrome
   - Firefox

@@ -34,7 +34,7 @@ const SiRuClient = require('skyway-siru-client')
 
 ## Coding
 
-In this tutorial, we assume that `ssg start` is executed with `ROOMNAME=testroom MQTT_URL=mqtt://localhost MQTT_TOPIC=testtopic/+` on the linux machine.
+In this tutorial, we assume that `ssg start` is executed with `ROOMNAME=testroom MQTT_URL=mqtt://localhost MQTT_TOPIC=testtopic/+` on the linux machine. We also assumed that `mosquitto` is running as a daemon. When you used our installer, `mosquitto` has been running already.
 
 First, you need to create `siru-client` instance by indicating room name and APIKEY. This library will connect to the linux device which runs `janus` and `ssg`. When connection is established, `connect` event will be fired.
 
@@ -51,7 +51,7 @@ client.on('connect', () => {
 
 ## Getting Media Streaming from device
 
-When device join the room, event ``meta`` will be fired. (meta data is configured in ``~/.ssg/profile.yaml``.)
+When device has joined the room, ``meta`` event will be fired. (you can check and modify meta data in ``~/.ssg/profile.yaml``. Please note that you MUST not change the uuid in this file.)
 
 Here, meta data has ``uuid`` property which is automatically allocated while 1st execution process of ssg. By indicating ``uuid``, you can request media streaming from device.
 
@@ -73,7 +73,7 @@ client.on('meta', profile => {
 
 SiRu-client supports MQTT proxy messaging inside room with full-mesh P2P technology without any global broaker server. 
 
-* subscribe
+### subscribe
 
 Once subscribed to the MQTT topic, published message from the linux device will be proxied to web app. When message is received, `message` event will be fired.
 
@@ -84,17 +84,16 @@ client.subscribe('testtopic/from_dev')
 // when published message is received, ``message`` event will be fired.
 client.on('message', (topic, mesg) => {
   console.log(`${topic}: ${mesg}`)
-  // #=> 'timestamp: 1496358525304'
 })
 ```
 
-To test this feature, please execute `mosquitto_pub` command on the linux device ( by using our installer, mosquitto has been installed. )
+To check this feature, please execute `mosquitto_pub` command on the linux device ( by using our installer, mosquitto has been installed already. ).
 
 ```bash
 mosquitto_pub -t testtopic/from_dev -m 'hello iot sdk'
 ```
 
-* publish
+### publish
 
 To send message to MQTT broaker running inside the linux device, you can use `publish()` method.
 
@@ -117,9 +116,7 @@ $ mosquitto_sub -t testtopic/+
 
 ## Next Step
 
-Now you trained how to code within SkyWay IoT SDK framework. With rewriting and referencing above code, you can easily deploy realtime monitoring app. SiRu libraries are super convenient to develop IoT apps with SkyWay. Sometime, you do not want to use SiRu API since it is abstracted. For this cases, you can use pure SkyWay API.
-
-More detail about our API, please check below
+More detail about our SiRu client API, please check
 
 * [API reference - SiRu Client](https://github.com/nttcom/skyway-siru-client/blob/master/docs/SiRuClient.md)
 
