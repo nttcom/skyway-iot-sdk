@@ -144,7 +144,7 @@ install_gstreamer() {
 print_status "Install gstreamer"
 
 exec_cmd "apt-get update"
-exec_cmd "apt-get install -y libgstreamer1.0-0 libgstreamer1.0-dev gstreamer1.0-nice gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-omx"
+exec_cmd "apt-get install -y libgstreamer1.0-0 libgstreamer1.0-dev gstreamer1.0-nice gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-omx gstreamer1.0-alsa"
 
 print_status "Finished to install gstreamer"
 }

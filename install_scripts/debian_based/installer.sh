@@ -1,1 +1,1 @@
-installer.0.0.2.sh
+installer.0.1.0.sh
