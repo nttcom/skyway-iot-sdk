@@ -4,7 +4,7 @@ For building WebRTC IoT app, we recommend you to use **SkyWay IoT Room Utility (
 
 * have room base connectivity with clients and devices inside room. You don't care about each peerid.
 * get Media Streaming from IoT device super easy way. This makes easy to build app for monitoring camera, for instance.
-* have MQTT proxy messaging inside room on top of the data channel.
+* have MQTT relay messaging inside room on top of the data channel.
 
 Below, we will explain about how to use SiRu.
 
@@ -69,9 +69,9 @@ client.on('meta', profile => {
 })
 ```
 
-## MQTT proxy
+## MQTT relay
 
-SiRu-client supports MQTT proxy messaging inside room with full-mesh P2P technology without any global broaker server. 
+SiRu-client supports MQTT relay messaging inside room with full-mesh P2P technology without any global broaker server.
 
 ### subscribe
 

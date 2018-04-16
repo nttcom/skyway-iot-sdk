@@ -20,7 +20,7 @@ const client = new SiRuClient('myroom', {key: 'YOUR_API_KEY'});
 client.on('meta', profile => {
   client.requestStreaming(profile.uuid)
     .then(stream => video.srcObject = stream);
-    
+
   client.subscribe('topic/temperature');
 
   client.on('message', (topic, mesg) => {
@@ -34,7 +34,7 @@ client.on('meta', profile => {
 # New features in 0.1.x
 
 * Running 3rd party app is not needed any more.
-* MQTT communication feature is supported.
+* MQTT relay feature is supported.
 * Large size data transfer ( about 60KB ) is supported.
 * Stability improved.
 

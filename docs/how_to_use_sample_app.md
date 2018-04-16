@@ -1,6 +1,6 @@
 # How to use sample app
 
-After installation, you can check the sample page which you can check live streaming from your IoT device and MQTT proxy feature. Please be sure that [installation procedure](./how_to_install.md) is completely finished before.
+After installation, you can check the sample page which you can check live streaming from your IoT device and MQTT relay feature. Please be sure that [installation procedure](./how_to_install.md) is completely finished before.
 
 ## start processes on your IoT device
 
@@ -113,9 +113,9 @@ Then, you may see that video changes from test source to real camera.
 
 ![sample app screenshot with usb cam](https://nttcom.github.io/skyway-iot-sdk/images/iot_sample_app_me.png)
 
-## MQTT proxy
+## MQTT relay
 
-From 0.1.0, this SDK supports MQTT proxy feature from the linux device to web app. As you may see `testtopic/from_dev` in right-top text box, this web app is subscribing this topic. So, published message from the linux box with this topic will be proxied to this app. For instance, when you type below commnad, you will see this message in your web app.
+From 0.1.0, this SDK supports MQTT relay feature from the linux device to web app. As you may see `testtopic/from_dev` in right-top text box, this web app is subscribing this topic. So, published message from the linux box with this topic will be proxied to this app. For instance, when you type below commnad, you will see this message in your web app.
 
 ```bash
 mosquitto_pub -t testtopic/from_dev -m 'hello iot sdk'
