@@ -45,7 +45,7 @@ gst-launch-1.0 videotestsrc is-live=true ! \
   "video/x-h264,profile=constrained-baseline,level=(string)3.1" ! \
   rtph264pay pt=96 ! \
   capssetter caps='application/x-rtp,profile-level-id=(string)42c01f' ! \
-  udpsink host=127.0.0.1 port=5004
+  udpsink host=127.0.0.1 port=5004 \
 audiotestsrc ! \
   audioconvert ! queue ! \
   audioresample ! \
