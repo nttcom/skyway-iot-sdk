@@ -138,7 +138,7 @@ sudo apt-get install libgstreamer1.0-0 \
 
 ```bash
 sudo apt-get update
-sudo apt-get install libgstreamer1.0
+sudo apt-get install gstreamer1.0
 ```
 
 ---
