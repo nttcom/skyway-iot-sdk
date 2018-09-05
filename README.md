@@ -1,3 +1,7 @@
+# Important notice : This experimental SDK has been deprecated. We recommend you migrating to [SkyWay WebRTC GW](https://github.com/skyway/skyway-webrtc-gateway).
+
+---
+
 # SkyWay IoT SDK
 
 Project repository for [SkyWay](https://webrtc.ecl.ntt.com/en/) IoT SDK (At this moment, open beta feature).
